@@ -1,0 +1,31 @@
+html, body, .row{
+    height: 100%;
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+.result {
+    padding: 2px;
+    margin: 2px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.result, #searchInput{
+    width: 250px;
+    
+}
