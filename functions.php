@@ -1,54 +1,68 @@
 <?php
-include 'variables.php';
 
- //$names = array('Alexis S', 'Alexis D', 'Vadim', 'Greg', 'Florian', 'Thomas', 'Mano', 'Adelie', 'Laurent', 'Fabienne', 'Agnes');
+// Open a directory, and read its contents
 
-// une fonction qui va retourner une ou plusieurs valeurs de ce tableau selon une valeur saisie;
+//je je recois des donnes en post, je verifiee que c'est bien ce que j'attends,
+//et je lance openDirectory en lui donnant en parametre le chemin recu.
 isEmpty($_POST);
-
-function verifyIfContainsStr($initialString){
-    if (empty($initialString)){
-        return [];
-    }
-    $lowerStr = strtolower($initialString);
-
-    $result = [];
-    GLOBAL $names;
-    foreach($names as $name){
-        $lower = strtolower($name);
-        if (strpos($lower, $lowerStr) !== false ){
-            array_push($result,$name);
-        }
-    }
-
-    $newArray = array_slice($result, 0, 5);
-    showResult($newArray);
-    //return $result;
-}
-
-function showResult($result){
-    foreach ($result as $name){
-        echo "<input class='result' type='button' value='".$name."'>";
-    }
-}
-
-//var_dump(verifyIfContainsStr('e'));
 
 function isEmpty($post){
     if (!empty($post)){
-        existsSearch($post['search']);
+        existsFolder($post['folder']);
     }
 }
 
-function existsSearch($search){
+function existsFolder($search){
     if (!empty($search)){
-        verifyContent($search);
+        openDirectory($search);
     }
 }
 
-function verifyContent($search){
-    verifyIfContainsStr($search);
+function openDirectory($directory){
+   $content = [];
+   if (is_dir($directory)){
+       if ($dh = opendir($directory)){
+           while (($file = readdir($dh)) !== false){
+           //echo "filename:" . $file . "<br>";
+           array_push($content, $directory.$file);
+           }
+           closedir($dh);
+       }
+   }
+   associativeArray($content);
+   //echo json_encode($content);
+}
+
+function associativeArray($filenames){
+    $names = [];
+   if (is_array($filenames) && !empty($filenames)){
+       foreach($filenames as $filename){
+            if (filetype($filename) == "dir"){
+                $names[$filename] = 'directory';
+            } else {
+                $names[$filename] = 'file';
+            }
+            //echo transformInLink($filename);
+        }       
+   }
+   //var_dump($names);
+   echo json_encode($names);
 }
 
 
+
+//transformer en lien
+
+function transformInLink($filename){
+    $var = explode("/", $filename);
+    $varName = end($var);
+
+   if (filetype($filename) == "dir"){
+       return "<div class='directory'><p>$filename</p></div>";
+   } else {
+       return "<div class='file '><p>$filename</p></div>";
+   }
+}
+// <img src='images/directory.png' alt='directory'>
+//<img src='images/file.png' alt='file'>
 ?>

@@ -1,34 +1,24 @@
 <?php 
 include 'header.php';
+include 'functions.php';
 ?>
 
 <!--
     TODO:
-     Done - on va faire un champ de recherche qui nous propose des noms 
-     Done - en cliquant sur le nom cela nous fait une auto completion de la barre de recherche
-     - Lorsqu'on appuye sur rechercher, la fiche de l'eleve nous aparait
-     Done - Definir une limite pour le nombre des suggestions.
-     - Ne pas deplacer le search quand nous montrons des suggestions ?
-     Done - Aligner les suggestions a gauche
+     Objectif principal :
+    L'application doit permettre d'ouvrir un dossier et d'afficher son contenu à l'écran de la même manière que l'explorateur de fichier de votre système d'exploitation.
+    L'application doit différencier les dossier des fichiers avec des icônes différentes.
+    Au clic dans un dossier, le contenu affiché doit se mettre à jour sans recharger la page.
+    L'application doit permettre de revenir en arrière.
+    L'application n'est pas censé permettre d'afficher le contenu des fichiers donc ne vous embêtez pas avec ça.
+
+    Objectif secondaires :
+    difficulté hard : afficher le chemin du répertoire en cours dans une div
+    difficulté extrem : découper ce chemin et permettre à l'utilisateur de revenir au dossier cliqué
+
 
 -->
-<div class="row">
 
-    <!-- Title -->
-    <div class="column">
-        <h1 class="center">Recherce</h1>
-    </div>
+<div class='content'></div>
 
-    <!-- Search Form -->
-    <div class="column">
-        <form id="form" action="" method="POST" autocomplete="off">
-            <input class="inputText" type="text" name="search" id="searchInput" placeholder="Search :"/>
-            <input id="searchButton" type="submit" value="Search" />
-
-            <!-- Results -->
-            <div class="results">
-            </div>
-        </form>
-    </div>
-</div>
 <?php include 'footer.php'; ?>
