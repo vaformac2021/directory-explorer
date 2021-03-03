@@ -1,11 +1,23 @@
 let whenReady = () => {
   
-
+  let paths = $('.paths');
   let directory = $('.directory');
   let file = $('.file');
   let content = $('.content');
   let object = {};
   let currentDirectory = "/";
+
+  let refrechPath = () =>{
+    if (currentDirectory != '/'){
+      let chemin = currentDirectory.split('/');
+      for (elem of chemin){
+        paths.append(`<div class='path'>${elem}/</div>`);
+      }
+    } else {
+      paths.append(`<div class='path'>/</div>`);
+    }
+    
+  }
 
   let showElements = () => {
     //console.log (object);
@@ -32,8 +44,10 @@ let whenReady = () => {
       
     }
     showElements();
+    refrechPath();
     directory = $('.directory');
     directory.click(accessDirectory);
+
   }
 
 $.post('functions.php', {folder: "/"}, noName, "JSON");

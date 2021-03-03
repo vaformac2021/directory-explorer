@@ -22,6 +22,11 @@
     margin: 0;
     }
 
+.paths {
+    display: flex;
+    flex-direction: row;
+}
+
 .directory{
     color : blue;
 }

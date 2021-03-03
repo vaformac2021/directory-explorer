@@ -18,7 +18,7 @@ include 'functions.php';
 
 
 -->
-
+<div class='paths'></div>
 <div class='content'></div>
 
 <?php include 'footer.php'; ?>
