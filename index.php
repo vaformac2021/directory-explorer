@@ -18,6 +18,7 @@ include 'functions.php';
 
 
 -->
+<button class='return' type="button"><</button>
 <div class='paths'></div>
 <div class='content'></div>
 

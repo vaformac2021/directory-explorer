@@ -46,6 +46,7 @@ function associativeArray($filenames){
         }       
    }
    //var_dump($names);
+   
    echo json_encode($names);
 }
 
