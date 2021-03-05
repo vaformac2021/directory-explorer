@@ -4,6 +4,9 @@
     flex-wrap: wrap;
 }
 
+.content:hover {
+    cursor:default;
+}
 
 
 .directory, .file {
@@ -12,14 +15,22 @@
     flex-direction: column;
 }
 
-.directory>img, .file>img{
+.directory>svg, .file>svg{
     height: 50px;
+    fill:rgb(43, 42, 42);
    
 }
 
 .directory>*, .file>*{
-    padding: 0;
+    padding: 5px;
     margin: 0;
+    text-align: center;
+    }
+.directory>p, .file>p{
+    width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     }
 
 .paths {
@@ -33,4 +44,8 @@
 
 .file{
     color: green;
+}
+
+.noName{
+    display: flex;
 }

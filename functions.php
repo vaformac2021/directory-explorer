@@ -1,9 +1,4 @@
 <?php
-
-// Open a directory, and read its contents
-
-//je je recois des donnes en post, je verifiee que c'est bien ce que j'attends,
-//et je lance openDirectory en lui donnant en parametre le chemin recu.
 isEmpty($_POST);
 
 function isEmpty($post){
@@ -23,14 +18,22 @@ function openDirectory($directory){
    if (is_dir($directory)){
        if ($dh = opendir($directory)){
            while (($file = readdir($dh)) !== false){
-           //echo "filename:" . $file . "<br>";
            array_push($content, $directory.$file);
            }
            closedir($dh);
-       }
+        }
    }
-   associativeArray($content);
-   //echo json_encode($content);
+
+   asort($content);
+   $newContent = deletePoints($content);
+
+   associativeArray($newContent);
+}
+
+function deletePoints($content){
+    array_shift($content);
+    array_shift($content);
+    return $content;
 }
 
 function associativeArray($filenames){
@@ -42,28 +45,8 @@ function associativeArray($filenames){
             } else {
                 $names[$filename] = 'file';
             }
-            //echo transformInLink($filename);
         }       
    }
-   //var_dump($names);
-   
    echo json_encode($names);
 }
-
-
-
-//transformer en lien
-
-function transformInLink($filename){
-    $var = explode("/", $filename);
-    $varName = end($var);
-
-   if (filetype($filename) == "dir"){
-       return "<div class='directory'><p>$filename</p></div>";
-   } else {
-       return "<div class='file '><p>$filename</p></div>";
-   }
-}
-// <img src='images/directory.png' alt='directory'>
-//<img src='images/file.png' alt='file'>
 ?>

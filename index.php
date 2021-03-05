@@ -15,11 +15,16 @@ include 'functions.php';
     Objectif secondaires :
     difficulté hard : afficher le chemin du répertoire en cours dans une div
     difficulté extrem : découper ce chemin et permettre à l'utilisateur de revenir au dossier cliqué
+    - handle les les .. when navigatin in folders
+    - Add tooltips
+    - Ad cannot open folder.
 
 
 -->
-<button class='return' type="button"><</button>
-<div class='paths'></div>
+<div class="noName">
+    <button class='return' type="button"><</button>
+    <div class='paths'></div>
+</div>
 <div class='content'></div>
 
 <?php include 'footer.php'; ?>
